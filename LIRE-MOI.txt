@@ -1,0 +1,24 @@
+VIGIE LFMN — NICE CÔTE D'AZUR
+
+Le fichier HTML se consulte seul. Il contient un instantané réel horodaté.
+Pour le trafic automatiquement actualisé, lancer le serveur local ci-dessous.
+Les navigateurs bloquent la lecture directe de certaines API ADS-B (CORS).
+
+1. Décompresser tout le dossier.
+2. Installer Python 3 si nécessaire (python.org). Aucune autre dépendance.
+3. Dans un terminal ouvert dans le dossier, exécuter :
+   python3 vigie-server.py
+   Sur Windows : python vigie-server.py
+   Ou double-cliquer sur le lanceur correspondant si votre système le permet.
+4. Le navigateur s'ouvre sur http://127.0.0.1:8765/
+5. Laisser le terminal ouvert ; Ctrl+C pour arrêter.
+
+Données : adsb.lol, avec repli airplanes.live ; météo Open-Meteo.
+Fréquences : trafic 15 s, météo 10 min. Aucune clé API nécessaire.
+Le serveur écoute uniquement sur votre ordinateur (127.0.0.1).
+Le direct dépend de l'accès Internet et de la disponibilité des API publiques.
+Aucune donnée fictive n'est injectée. Une réponse ancienne reste signalée.
+L'historique d'altitude et les trajectoires se construisent pendant la session.
+Les catégories de montée/descente ne confirment pas la destination du vol.
+Cartographie : OpenStreetMap ; littoral intégré Natural Earth (domaine public).
+Information grand public, non destinée à la navigation aérienne.
