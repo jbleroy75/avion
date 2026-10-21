@@ -30,13 +30,14 @@ class Handler(BaseHTTPRequestHandler):
    try:payload=json.dumps(retrieve(path.rsplit('/',1)[-1])).encode();code=200
    except ValueError as e:payload=json.dumps({'error':str(e)}).encode();code=503
    self.send_response(code);self.send_header('Content-Type','application/json');self.send_header('Cache-Control','no-store');self.end_headers();self.wfile.write(payload)
+  elif path=='/healthz':self.send_response(200);self.send_header('Content-Type','text/plain');self.end_headers();self.wfile.write(b'ok')
   elif path in ('/','/vigie-lfmn.html'):
    data=(ROOT/'vigie-lfmn.html').read_bytes();self.send_response(200);self.send_header('Content-Type','text/html; charset=utf-8');self.send_header('Content-Length',str(len(data)));self.end_headers();self.wfile.write(data)
   else:self.send_error(404)
  def log_message(self,format,*args):pass
 if __name__=='__main__':
- parser=argparse.ArgumentParser(description=__doc__);parser.add_argument('--port',type=int,default=8765);parser.add_argument('--no-browser',action='store_true');args=parser.parse_args()
- try:server=ThreadingHTTPServer(('127.0.0.1',args.port),Handler)
+ parser=argparse.ArgumentParser(description=__doc__);parser.add_argument('--port',type=int,default=8765);parser.add_argument('--no-browser',action='store_true');parser.add_argument('--host',default='127.0.0.1');args=parser.parse_args()
+ try:server=ThreadingHTTPServer((args.host,args.port),Handler)
  except OSError as e:raise SystemExit('Impossible de démarrer le serveur : '+str(e))
  url=f'http://127.0.0.1:{args.port}/';print('Vigie LFMN : '+url+'\nLaisser cette fenêtre ouverte. Ctrl+C pour arrêter.',flush=True)
  if not args.no_browser:threading.Timer(.6,lambda:webbrowser.open(url)).start()
