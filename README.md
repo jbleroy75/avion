@@ -62,3 +62,13 @@ Le direct dépend d’Internet, de la couverture ADS-B et de la disponibilité d
 - `LIRE-MOI.txt` : démarrage rapide.
 
 Une publication HTML statique seule ne fournit pas le relais nécessaire au direct ADS-B.
+
+## Dernière version 3D
+
+La vue **3D** propose les terminaux, pistes, tour, trajectoires observées, rotation, zoom, suivi de vol et vues prédéfinies. **Style vidéo** amplifie les proportions pour une maquette lisible ; **Échelle réelle** rétablit les proportions géographiques. Les bâtiments et leurs hauteurs restent une reconstitution illustrative.
+
+Version hébergée : https://vigie-nice-jb.jbl-leroy.chatgpt.site (accès privé).
+
+Le dossier `hosted/` contient les sources exactes de la dernière version publiée (source Sites `4780b739c8c657e2ef7cae4e0d322f3a45ae43ce`), son relais Worker et les scripts de développement/build. Depuis ce dossier : `npm run dev` (Node.js récent), `npm run build`, puis `npm run validate`. `page.html` est également incorporé dans la constante `PAGE` de `worker/index.js` : conserver les deux versions synchronisées lors des modifications.
+
+Le déploiement Docker continue de servir `vigie-lfmn.html` avec `vigie-server.py`. Les réglages IPv4 et le contrôle `/healthz` sont conservés.

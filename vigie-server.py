@@ -3,8 +3,8 @@
 import argparse,json,pathlib,threading,time,urllib.request,urllib.error,webbrowser
 from http.server import BaseHTTPRequestHandler,ThreadingHTTPServer
 ROOT=pathlib.Path(__file__).resolve().parent
-WX='https://api.open-meteo.com/v1/forecast?latitude=43.6661&longitude=7.2153&current=temperature_2m,wind_speed_10m,wind_direction_10m,wind_gusts_10m,pressure_msl&hourly=wind_speed_10m,wind_gusts_10m&wind_speed_unit=kn&forecast_days=2&timezone=GMT'
-FEEDS=[('adsb.lol','https://api.adsb.lol/v2/lat/43.6661/lon/7.2153/dist/60'),('airplanes.live','https://api.airplanes.live/v2/point/43.6661/7.2153/60')]
+WX='https://api.open-meteo.com/v1/forecast?latitude=43.6584&longitude=7.21587&current=temperature_2m,wind_speed_10m,wind_direction_10m,wind_gusts_10m,pressure_msl&hourly=wind_speed_10m,wind_gusts_10m&wind_speed_unit=kn&forecast_days=2&timezone=GMT'
+FEEDS=[('adsb.lol','https://api.adsb.lol/v2/lat/43.6584/lon/7.21587/dist/60'),('airplanes.live','https://api.airplanes.live/v2/point/43.6584/7.21587/60')]
 CACHE={};LOCK=threading.Lock()
 def retrieve(kind):
  with LOCK:
