@@ -1,4 +1,4 @@
-FROM python:3.12-slim
+FROM python:3.15-slim
 WORKDIR /app
 # Prefer IPv4: the Docker IPv6 (NAT66) path stalls TLS handshakes to api.adsb.lol
 RUN echo 'precedence ::ffff:0:0/96 100' >> /etc/gai.conf && useradd -M vigie
