@@ -4,7 +4,7 @@ compatibility_date = "2026-10-01"
 workers_dev = true
 
 # Bascule DNS : décommenter (et retirer le domaine de Coolify/Traefik au même moment).
-# routes = [{ pattern = "airplane.jbleroy.fr", custom_domain = true }]
+routes = [{ pattern = "airplane.jbleroy.fr", custom_domain = true }]
 
 # La page est copiée telle quelle depuis vigie-lfmn.html (source unique) au moment du déploiement.
 [build]
