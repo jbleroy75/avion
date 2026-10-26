@@ -1,0 +1,21 @@
+name = "avion-vigie"
+main = "cloudflare/worker.js"
+compatibility_date = "2026-10-01"
+workers_dev = true
+
+# Bascule DNS : décommenter (et retirer le domaine de Coolify/Traefik au même moment).
+# routes = [{ pattern = "airplane.jbleroy.fr", custom_domain = true }]
+
+# La page est copiée telle quelle depuis vigie-lfmn.html (source unique) au moment du déploiement.
+[build]
+command = "rm -rf .cf-assets && mkdir -p .cf-assets && cp vigie-lfmn.html .cf-assets/"
+
+[assets]
+directory = ".cf-assets"
+binding = "ASSETS"
+run_worker_first = true
+html_handling = "none"
+not_found_handling = "none"
+
+[observability]
+enabled = true

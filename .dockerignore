@@ -3,3 +3,8 @@
 *.command
 LIRE-MOI.txt
 README.md
+cloudflare
+.github
+wrangler.toml
+package.json
+.cf-assets
