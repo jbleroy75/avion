@@ -1,6 +1,7 @@
 import { test, beforeEach, afterEach } from "node:test";
 import assert from "node:assert/strict";
-import worker, { _reset, FEEDS, WX } from "../worker.js";
+import { _reset, FEEDS, WX } from "../relay.js";
+import worker from "../worker.js";
 
 let calls, realFetch, routes;
 const env = { ASSETS: { fetch: async (req) => new Response(`<html>${new URL(req.url).pathname}</html>`, { headers: { "Content-Type": "text/html" } }) } };
