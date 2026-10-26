@@ -1,0 +1,9 @@
+{
+  "name": "avion-vigie",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "test": "node --test cloudflare/test/*.test.mjs",
+    "deploy": "wrangler deploy"
+  }
+}

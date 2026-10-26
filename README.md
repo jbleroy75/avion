@@ -72,3 +72,12 @@ Version hébergée : https://vigie-nice-jb.jbl-leroy.chatgpt.site (accès privé
 Le dossier `hosted/` contient les sources exactes de la dernière version publiée (source Sites `4780b739c8c657e2ef7cae4e0d322f3a45ae43ce`), son relais Worker et les scripts de développement/build. Depuis ce dossier : `npm run dev` (Node.js récent), `npm run build`, puis `npm run validate`. `page.html` est également incorporé dans la constante `PAGE` de `worker/index.js` : conserver les deux versions synchronisées lors des modifications.
 
 Le déploiement Docker continue de servir `vigie-lfmn.html` avec `vigie-server.py`. Les réglages IPv4 et le contrôle `/healthz` sont conservés.
+
+## Cloudflare Worker (avion-vigie)
+
+`wrangler.toml` + `cloudflare/worker.js` : même contrat que `vigie-server.py` (page `/` et `/vigie-lfmn.html`, `/api/traffic` avec repli adsb.lol → airplanes.live, `/api/weather`, `/healthz`). La page est copiée depuis `vigie-lfmn.html` au déploiement (source unique). Cache court : 8 s trafic, 300 s météo (mémoire de l'isolat + Cache API).
+
+- Tests : `npm test` (Node 22+).
+- Déploiement : `.github/workflows/deploy-cloudflare.yml` (tests puis `wrangler deploy` sur push `main`, secret `CLOUDFLARE_API_TOKEN`).
+- URL de pré-production : https://avion-vigie.cf-security.workers.dev
+- Bascule DNS : décommenter `routes` dans `wrangler.toml` (domaine `airplane.jbleroy.fr`) et retirer le domaine de Coolify.
